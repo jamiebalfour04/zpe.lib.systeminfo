@@ -74,6 +74,8 @@ public class SystemInfoTest { // NOSONAR squid:S5786
    */
   public static void main(String[] args) {
 
+    System.setProperty("jna.nosys", "true");
+    System.setProperty("jna.tmpdir", "/Users/jamiebalfour/tmp");
     logger.info("Initializing System...");
     SystemInfo si = new SystemInfo();
 

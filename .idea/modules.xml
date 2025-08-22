@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/libZPE-SystemInfo.iml" filepath="$PROJECT_DIR$/libZPE-SystemInfo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zpe.lib.systeminfo.iml" filepath="$PROJECT_DIR$/zpe.lib.systeminfo.iml" />
     </modules>
   </component>
 </project>

@@ -7,9 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="oshi-core-6.6.0" level="project" />
-    <orderEntry type="library" name="zpe" level="project" />
-    <orderEntry type="library" name="jna-platform-5.13.0" level="project" />
-    <orderEntry type="library" name="slf4j-api-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="zpe" level="project" />
+    <orderEntry type="library" exported="" name="oshi-core-java11-6.8.1" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-api-2.0.17" level="project" />
+    <orderEntry type="library" name="jna-5.12.1" level="project" />
+    <orderEntry type="library" name="jna-platform-5.12.1" level="project" />
   </component>
 </module>
