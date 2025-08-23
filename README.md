@@ -3,5 +3,5 @@
   This is the official library plugin for ZPE for getting system information.
 </p>
 <p>
-  <em>zpe.lib.systeminfo is currently in a non-functional state due to unresolved platform-level issues preventing it from loading required native libraries correctly.</em>
+  <strong>zpe.lib.systeminfo is currently in a non-functional state due to unresolved platform-level issues preventing it from loading required native libraries correctly.</strong>
 </p>
