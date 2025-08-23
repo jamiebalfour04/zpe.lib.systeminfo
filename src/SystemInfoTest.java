@@ -59,7 +59,7 @@ public class SystemInfoTest { // NOSONAR squid:S5786
   static List<String> oshi = new ArrayList<>();
 
   /**
-   * Test that this platform is implemented..
+   * Test that this platform is implemented...x
    */
   void testPlatformEnum() {
     //assertThat("Unsupported OS", SystemInfo.getCurrentPlatform(), is(not(PlatformEnum.UNKNOWN)));

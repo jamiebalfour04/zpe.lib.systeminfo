@@ -8,6 +8,7 @@
       <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/oshi-core-java11-6.8.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/jna-5.12.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/jna-platform-5.12.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/slf4j-simple-2.0.17.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

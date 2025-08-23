@@ -21,6 +21,21 @@ public class Plugin implements ZPELibrary {
   }
 
   @Override
+  public boolean supportsWindows() {
+    return true;
+  }
+
+  @Override
+  public boolean supportsMacOs() {
+    return false;
+  }
+
+  @Override
+  public boolean supportsLinux() {
+    return true;
+  }
+
+  @Override
   public String getName() {
     return "libZPE-SystemInfo";
   }
@@ -32,6 +47,8 @@ public class Plugin implements ZPELibrary {
 
 
   public static void main(String[] args){
+    System.setProperty("jna.nosys", "true");
+    System.setProperty("jna.tmpdir", "/Users/jamiebalfour/tmp");
     SystemInfo s = new SystemInfo();
     System.out.println(s.getHardware().getDiskStores());
   }
