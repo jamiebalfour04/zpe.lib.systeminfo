@@ -13,9 +13,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.PhysicalProcessor;
@@ -54,8 +51,6 @@ import oshi.util.Util;
  */
 public class SystemInfoTest { // NOSONAR squid:S5786
 
-  private static final Logger logger = LoggerFactory.getLogger(SystemInfoTest.class);
-
   static List<String> oshi = new ArrayList<>();
 
   /**
@@ -76,66 +71,63 @@ public class SystemInfoTest { // NOSONAR squid:S5786
 
     System.setProperty("jna.nosys", "true");
     System.setProperty("jna.tmpdir", "/Users/jamiebalfour/tmp");
-    logger.info("Initializing System...");
+    System.out.println("Initializing System...");
     SystemInfo si = new SystemInfo();
 
     HardwareAbstractionLayer hal = si.getHardware();
-    OperatingSystem os = si.getOperatingSystem();
+    CentralProcessor cpu = hal.getProcessor();
+    System.out.println("CPU: " + cpu.getProcessorIdentifier().getName());
+    System.out.println("Vendor: " + cpu.getProcessorIdentifier().getVendor());
+    System.out.println("Family: " + cpu.getProcessorIdentifier().getFamily());
+    System.out.println("Model: " + cpu.getProcessorIdentifier().getModel());
+    System.out.println("Stepping: " + cpu.getProcessorIdentifier().getStepping());
 
-    printOperatingSystem(os);
+    System.out.println("Physical cores: " + cpu.getPhysicalProcessorCount());
+    System.out.println("Logical cores: " + cpu.getLogicalProcessorCount());
 
-    logger.info("Checking computer system...");
-    printComputerSystem(hal.getComputerSystem());
+    long[] freqs = cpu.getCurrentFreq(); // may be 0 or approximate depending on OS
+    System.out.println("Current freq (per logical core): " + Arrays.toString(freqs));
 
-    logger.info("Checking Processor...");
-    printProcessor(hal.getProcessor());
+    ComputerSystem cs = hal.getComputerSystem();
+    System.out.println("Manufacturer: " + cs.getManufacturer());
+    System.out.println("Model: " + cs.getModel());
 
-    logger.info("Checking Memory...");
-    printMemory(hal.getMemory());
+    System.out.println("Baseboard: " + cs.getBaseboard().getManufacturer()
+            + " " + cs.getBaseboard().getModel());
 
-    logger.info("Checking CPU...");
-    printCpu(hal.getProcessor());
+    System.out.println("BIOS: " + cs.getFirmware().getManufacturer()
+            + " " + cs.getFirmware().getVersion()
+            + " (" + cs.getFirmware().getReleaseDate() + ")");
 
-    logger.info("Checking Processes...");
-    printProcesses(os, hal.getMemory());
 
-    logger.info("Checking Services...");
-    printServices(os);
 
-    logger.info("Checking Sensors...");
+    System.out.println("Checking Sensors...");
     printSensors(hal.getSensors());
 
-    logger.info("Checking Power sources...");
+    System.out.println("Checking Power sources...");
     printPowerSources(hal.getPowerSources());
 
-    logger.info("Checking Disks...");
+    System.out.println("Checking Disks...");
     printDisks(hal.getDiskStores());
 
-    logger.info("Checking Logical Volume Groups ...");
+    System.out.println("Checking Logical Volume Groups ...");
     printLVgroups(hal.getLogicalVolumeGroups());
 
-    logger.info("Checking File System...");
-    printFileSystem(os.getFileSystem());
 
-    logger.info("Checking Network interfaces...");
+    System.out.println("Checking Network interfaces...");
     printNetworkInterfaces(hal.getNetworkIFs());
 
-    logger.info("Checking Network parameters...");
-    printNetworkParameters(os.getNetworkParams());
 
-    logger.info("Checking IP statistics...");
-    printInternetProtocolStats(os.getInternetProtocolStats());
-
-    logger.info("Checking Displays...");
+    System.out.println("Checking Displays...");
     printDisplays(hal.getDisplays());
 
-    logger.info("Checking USB Devices...");
+    System.out.println("Checking USB Devices...");
     printUsbDevices(hal.getUsbDevices(true));
 
-    logger.info("Checking Sound Cards...");
+    System.out.println("Checking Sound Cards...");
     printSoundCards(hal.getSoundCards());
 
-    logger.info("Checking Graphics Cards...");
+    System.out.println("Checking Graphics Cards...");
     printGraphicsCards(hal.getGraphicsCards());
 
     StringBuilder output = new StringBuilder();
@@ -145,7 +137,7 @@ public class SystemInfoTest { // NOSONAR squid:S5786
         output.append('\n');
       }
     }
-    logger.info("Printing Operating System and Hardware Info:{}{}", '\n', output);
+    System.out.println("Printing Operating System and Hardware Info:{}{}" + '\n' + output);
   }
 
   private static void printOperatingSystem(final OperatingSystem os) {

@@ -1,7 +1,8 @@
 <component name="libraryTable">
   <library name="slf4j-api-2.0.17">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/slf4j-api-2.0.17.jar!/" />
+      <root url="jar://$USER_HOME$/Sync/Programs/JARs/slf4j-api-2.0.17.jar!/" />
+      <root url="jar://$USER_HOME$/Sync/Programs/JARs/slf4j-simple-2.0.17.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

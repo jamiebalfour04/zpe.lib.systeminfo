@@ -1,14 +1,14 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="zpe.lib.systeminfo">
-    <output-path>$PROJECT_DIR$/out/artifacts/zpe_lib_systeminfo</output-path>
+    <output-path>$PROJECT_DIR$/build/</output-path>
     <root id="archive" name="zpe.lib.systeminfo.jar">
       <element id="module-output" name="zpe.lib.systeminfo" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/jna.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/slf4j-api-2.0.17.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/oshi-core-java11-6.8.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/jna-5.12.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/jna-platform-5.12.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Library/CloudStorage/Dropbox/Programs/JARs/slf4j-simple-2.0.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/JARs/jna-5.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/JARs/jna-platform-5.13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/JARs/oshi-core-6.6.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/JARs/slf4j-api-2.0.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/JARs/slf4j-simple-2.0.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Sync/Programs/ZPE/zpe.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

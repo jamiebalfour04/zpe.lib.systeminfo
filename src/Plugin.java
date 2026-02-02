@@ -1,3 +1,4 @@
+import jamiebalfour.zpe.ZPESystemInfoObject;
 import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPECustomFunction;
 import jamiebalfour.zpe.interfaces.ZPELibrary;
@@ -8,6 +9,10 @@ import java.util.Map;
 
 public class Plugin implements ZPELibrary {
 
+
+  public Plugin(){}
+
+
   @Override
   public Map<String, ZPECustomFunction> getFunctions() {
     HashMap<String, ZPECustomFunction> arr = new HashMap<String, ZPECustomFunction>();
@@ -17,7 +22,9 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public Map<String, Class<? extends ZPEStructure>> getObjects() {
-    return null;
+    HashMap<String, Class<? extends ZPEStructure>> z = new HashMap<>();
+    z.put("SystemInfo", ZPESystemInfoObject.class);
+    return z;
   }
 
   @Override
@@ -27,7 +34,7 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public boolean supportsMacOs() {
-    return false;
+    return true;
   }
 
   @Override
@@ -37,7 +44,7 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public String getName() {
-    return "libZPE-SystemInfo";
+    return "libSystemInfo";
   }
 
   @Override
