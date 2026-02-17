@@ -15,9 +15,7 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public Map<String, ZPECustomFunction> getFunctions() {
-    HashMap<String, ZPECustomFunction> arr = new HashMap<String, ZPECustomFunction>();
-
-    return arr;
+    return new HashMap<>();
   }
 
   @Override

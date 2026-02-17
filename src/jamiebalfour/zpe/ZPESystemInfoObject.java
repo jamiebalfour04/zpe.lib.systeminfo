@@ -25,9 +25,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
   HardwareAbstractionLayer hal;
   CentralProcessor cpu;
   ComputerSystem cs;
+  ZPERuntimeEnvironment zpe;
 
   public ZPESystemInfoObject(ZPERuntimeEnvironment z, ZPEPropertyWrapper parent) {
     super(z, parent, "ZPESystemInfo");
+    zpe = z;
     System.setProperty("jna.nosys", "true");
     System.setProperty("jna.tmpdir", "/Users/jamiebalfour/tmp");
 
@@ -36,14 +38,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     cpu = hal.getProcessor();
     cs = hal.getComputerSystem();
 
-    addNativeMethod("get_cpu_identifier", new get_cpu_identifier_Command());
-    addNativeMethod("get_cpu_vendor", new get_cpu_vendor_Command());
-    addNativeMethod("get_cpu_family", new get_cpu_family_Command());
-    addNativeMethod("get_cpu_model", new get_cpu_model_Command());
-    addNativeMethod("get_cpu_stepping", new get_cpu_stepping_Command());
-    addNativeMethod("get_cpu_physical_core_count", new get_cpu_physical_core_count_Command());
-    addNativeMethod("get_cpu_logical_core_count", new get_cpu_logical_core_count_Command());
-    addNativeMethod("get_cpu_current_frequencies", new get_cpu_current_frequencies_Command());
+    addNativeMethod("get_cpu", new get_cpu_Command());
     addNativeMethod("get_system_manufacturer", new get_system_manufacturer_Command());
     addNativeMethod("get_system_model", new get_system_model_Command());
     addNativeMethod("get_baseboard_manufacturer", new get_baseboard_manufacturer_Command());
@@ -59,37 +54,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
 
   }
 
-
-  public class get_cpu_identifier_Command implements ZPEObjectNativeMethod {
-
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-
-      return new ZPEString(cpu.getProcessorIdentifier().getName());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    public String getName() {
-      return "get_cpu_identifier";
-    }
-
-  }
-
-  public class get_cpu_vendor_Command implements ZPEObjectNativeMethod {
+  public class get_cpu_Command implements ZPEObjectNativeMethod {
 
     @Override
     public String[] getParameterNames() {
@@ -103,8 +68,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-
-      return new ZPEString(cpu.getProcessorIdentifier().getVendor());
+      return new CPU((ZPESystemInfoObject) parent, cpu);
     }
 
     @Override
@@ -113,177 +77,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     public String getName() {
-      return "get_cpu_vendor";
+      return "get_cpu";
     }
 
   }
 
-  public class get_cpu_family_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      return new ZPEString(cpu.getProcessorIdentifier().getFamily());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_family";
-    }
-  }
-
-  public class get_cpu_model_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      return new ZPEString(cpu.getProcessorIdentifier().getModel());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_model";
-    }
-  }
-
-  public class get_cpu_stepping_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      return new ZPEString(cpu.getProcessorIdentifier().getStepping());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_stepping";
-    }
-  }
-
-  public class get_cpu_physical_core_count_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      return new ZPENumber(cpu.getPhysicalProcessorCount());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_physical_core_count";
-    }
-  }
-
-  public class get_cpu_logical_core_count_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      return new ZPENumber(cpu.getLogicalProcessorCount());
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_logical_core_count";
-    }
-  }
-
-  public class get_cpu_current_frequencies_Command implements ZPEObjectNativeMethod {
-    @Override
-    public String[] getParameterNames() {
-      return new String[]{};
-    }
-
-    @Override
-    public String[] getParameterTypes() {
-      return new String[]{};
-    }
-
-    @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-      long[] freqs = cpu.getCurrentFreq(); // may include zeros depending on OS
-      ZPEList output = new ZPEList();
-      for (long freq : freqs) {
-        output.add(new ZPENumber(freq));
-      }
-      return output;
-    }
-
-    @Override
-    public int getRequiredPermissionLevel() {
-      return 0;
-    }
-
-    @Override
-    public String getName() {
-      return "get_cpu_current_frequencies";
-    }
-  }
 
   public class get_system_manufacturer_Command implements ZPEObjectNativeMethod {
     @Override
@@ -514,12 +312,8 @@ public class ZPESystemInfoObject extends ZPEStructure {
       } else {
         ZPEList output = new ZPEList();
         for (GraphicsCard gc : cards) {
-          ZPEMap cardMap = new ZPEMap();
-          cardMap.put("name", new ZPEString(gc.getName()));
-          cardMap.put("vendor", new ZPEString(gc.getVendor()));
-          cardMap.put("vram", new ZPENumber(gc.getVRam()));
-          cardMap.put("device_id", new ZPEString(gc.getDeviceId()));
-          output.add(cardMap);
+          jamiebalfour.zpe.GraphicsCard c = new jamiebalfour.zpe.GraphicsCard((ZPESystemInfoObject) parent, gc);
+          output.add(c);
         }
         return output;
       }
