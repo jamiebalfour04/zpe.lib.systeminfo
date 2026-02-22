@@ -37,6 +37,8 @@
 
 <pre>
 
+import "zpe.lib.systeminfo"
+
 sys = new SystemInfo()
 
 cpu = sys.get_cpu()
