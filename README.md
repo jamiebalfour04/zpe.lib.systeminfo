@@ -41,15 +41,15 @@ import "zpe.lib.systeminfo"
 
 sys = new SystemInfo()
 
-cpu = sys.get_cpu()
+cpu = sys->get_cpu()
 
-print(cpu.get_identifier())
-print(cpu.get_physical_core_count())
+print(cpu->get_identifier())
+print(cpu->get_physical_core_count())
 
-cards = sys.get_graphics_cards()
+cards = sys->get_graphics_cards()
 
 for (c in cards)
-    print(c.get_name())
+    print(c->get_name())
 end for
 </pre>
 
