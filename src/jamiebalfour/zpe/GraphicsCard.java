@@ -1,16 +1,13 @@
 package jamiebalfour.zpe;
 
 import jamiebalfour.generic.JBBinarySearchTree;
+import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEObject;
 import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod;
 import jamiebalfour.zpe.interfaces.ZPEType;
-import jamiebalfour.zpe.types.ZPEList;
-import jamiebalfour.zpe.types.ZPEMap;
 import jamiebalfour.zpe.types.ZPENumber;
 import jamiebalfour.zpe.types.ZPEString;
-
-import java.util.List;
 
 public class GraphicsCard extends ZPEStructure {
 
@@ -29,57 +26,132 @@ public class GraphicsCard extends ZPEStructure {
   }
 
   public class get_name_Command implements ZPEObjectNativeMethod {
-    @Override public String[] getParameterNames() { return new String[]{}; }
-    @Override public String[] getParameterTypes() { return new String[]{}; }
+    @Override
+    public String[] getParameterNames() {
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
+    }
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
-        return new ZPEString(card.getName());
+      return new ZPEString(card.getName());
     }
 
-    @Override public int getRequiredPermissionLevel() { return 0; }
-    @Override public String getName() { return "get_name"; }
+    @Override
+    public int getRequiredPermissionLevel() {
+      return 0;
+    }
+
+    @Override
+    public String getName() {
+      return "get_name";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_vendor_Command implements ZPEObjectNativeMethod {
-    @Override public String[] getParameterNames() { return new String[]{}; }
-    @Override public String[] getParameterTypes() { return new String[]{}; }
+    @Override
+    public String[] getParameterNames() {
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
+    }
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(card.getVendor());
     }
 
-    @Override public int getRequiredPermissionLevel() { return 0; }
-    @Override public String getName() { return "get_vendor"; }
+    @Override
+    public int getRequiredPermissionLevel() {
+      return 0;
+    }
+
+    @Override
+    public String getName() {
+      return "get_vendor";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_vram_Command implements ZPEObjectNativeMethod {
-    @Override public String[] getParameterNames() { return new String[]{}; }
-    @Override public String[] getParameterTypes() { return new String[]{}; }
+    @Override
+    public String[] getParameterNames() {
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
+    }
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPENumber(card.getVRam());
     }
 
-    @Override public int getRequiredPermissionLevel() { return 0; }
-    @Override public String getName() { return "get_vram"; }
+    @Override
+    public int getRequiredPermissionLevel() {
+      return 0;
+    }
+
+    @Override
+    public String getName() {
+      return "get_vram";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.NUMBER_TYPE};
+    }
   }
 
   public class get_device_id_Command implements ZPEObjectNativeMethod {
-    @Override public String[] getParameterNames() { return new String[]{}; }
-    @Override public String[] getParameterTypes() { return new String[]{}; }
+    @Override
+    public String[] getParameterNames() {
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
+    }
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(card.getDeviceId());
     }
 
-    @Override public int getRequiredPermissionLevel() { return 0; }
-    @Override public String getName() { return "get_device_id"; }
-  }
+    @Override
+    public int getRequiredPermissionLevel() {
+      return 0;
+    }
 
+    @Override
+    public String getName() {
+      return "get_device_id";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
+  }
 
 
 }

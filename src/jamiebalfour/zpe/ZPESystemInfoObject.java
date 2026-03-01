@@ -1,6 +1,7 @@
 package jamiebalfour.zpe;
 
 import jamiebalfour.generic.JBBinarySearchTree;
+import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEObject;
 import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
 import jamiebalfour.zpe.core.ZPEStructure;
@@ -8,14 +9,13 @@ import jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod;
 import jamiebalfour.zpe.interfaces.ZPEPropertyWrapper;
 import jamiebalfour.zpe.interfaces.ZPEType;
 import jamiebalfour.zpe.types.ZPEList;
-import jamiebalfour.zpe.types.ZPEMap;
-import jamiebalfour.zpe.types.ZPENumber;
 import jamiebalfour.zpe.types.ZPEString;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.ComputerSystem;
 import oshi.hardware.GraphicsCard;
 import oshi.hardware.HardwareAbstractionLayer;
+
 import java.util.List;
 
 
@@ -80,6 +80,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
       return "get_cpu";
     }
 
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.OBJECT_TYPE};
+    }
+
   }
 
 
@@ -108,6 +113,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     public String getName() {
       return "get_system_manufacturer";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_system_model_Command implements ZPEObjectNativeMethod {
@@ -134,6 +144,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     @Override
     public String getName() {
       return "get_system_model";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
     }
   }
 
@@ -162,6 +177,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     public String getName() {
       return "get_baseboard_manufacturer";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_baseboard_model_Command implements ZPEObjectNativeMethod {
@@ -188,6 +208,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     @Override
     public String getName() {
       return "get_baseboard_model";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
     }
   }
 
@@ -216,6 +241,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     public String getName() {
       return "get_bios_manufacturer";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_bios_version_Command implements ZPEObjectNativeMethod {
@@ -243,6 +273,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     public String getName() {
       return "get_bios_version";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_bios_release_date_Command implements ZPEObjectNativeMethod {
@@ -269,6 +304,11 @@ public class ZPESystemInfoObject extends ZPEStructure {
     @Override
     public String getName() {
       return "get_bios_release_date";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
     }
   }
 
@@ -298,11 +338,23 @@ public class ZPESystemInfoObject extends ZPEStructure {
     public String getName() {
       return "get_sensors";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_graphics_cards_Command implements ZPEObjectNativeMethod {
-    @Override public String[] getParameterNames() { return new String[]{}; }
-    @Override public String[] getParameterTypes() { return new String[]{}; }
+    @Override
+    public String[] getParameterNames() {
+      return new String[]{};
+    }
+
+    @Override
+    public String[] getParameterTypes() {
+      return new String[]{};
+    }
 
     @Override
     public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
@@ -320,7 +372,19 @@ public class ZPESystemInfoObject extends ZPEStructure {
 
     }
 
-    @Override public int getRequiredPermissionLevel() { return 0; }
-    @Override public String getName() { return "get_graphics_cards"; }
+    @Override
+    public int getRequiredPermissionLevel() {
+      return 0;
+    }
+
+    @Override
+    public String getName() {
+      return "get_graphics_cards";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.LIST_TYPE};
+    }
   }
 }

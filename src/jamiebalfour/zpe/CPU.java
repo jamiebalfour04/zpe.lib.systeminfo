@@ -1,6 +1,7 @@
 package jamiebalfour.zpe;
 
 import jamiebalfour.generic.JBBinarySearchTree;
+import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEObject;
 import jamiebalfour.zpe.core.ZPEStructure;
 import jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod;
@@ -56,6 +57,12 @@ public class CPU extends ZPEStructure {
       return "get_identifier";
     }
 
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
+
+
   }
 
   public class get_vendor_Command implements ZPEObjectNativeMethod {
@@ -85,6 +92,11 @@ public class CPU extends ZPEStructure {
       return "get_vendor";
     }
 
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
+
   }
 
   public class get_family_Command implements ZPEObjectNativeMethod {
@@ -111,6 +123,11 @@ public class CPU extends ZPEStructure {
     @Override
     public String getName() {
       return "get_family";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
     }
   }
 
@@ -139,6 +156,11 @@ public class CPU extends ZPEStructure {
     public String getName() {
       return "get_model";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
+    }
   }
 
   public class get_stepping_Command implements ZPEObjectNativeMethod {
@@ -165,6 +187,11 @@ public class CPU extends ZPEStructure {
     @Override
     public String getName() {
       return "get_stepping";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.STRING_TYPE};
     }
   }
 
@@ -193,6 +220,11 @@ public class CPU extends ZPEStructure {
     public String getName() {
       return "get_physical_core_count";
     }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.NUMBER_TYPE};
+    }
   }
 
   public class get_logical_core_count_Command implements ZPEObjectNativeMethod {
@@ -219,6 +251,11 @@ public class CPU extends ZPEStructure {
     @Override
     public String getName() {
       return "get_logical_core_count";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.NUMBER_TYPE};
     }
   }
 
@@ -251,6 +288,11 @@ public class CPU extends ZPEStructure {
     @Override
     public String getName() {
       return "get_current_frequencies";
+    }
+
+    @Override
+    public byte[] returnTypes() {
+      return new byte[]{YASSByteCodes.LIST_TYPE};
     }
   }
 }
