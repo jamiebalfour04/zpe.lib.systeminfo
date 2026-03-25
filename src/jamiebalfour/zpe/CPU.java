@@ -4,11 +4,11 @@ import jamiebalfour.generic.JBBinarySearchTree;
 import jamiebalfour.zpe.core.YASSByteCodes;
 import jamiebalfour.zpe.core.ZPEObject;
 import jamiebalfour.zpe.core.ZPEStructure;
-import jamiebalfour.zpe.interfaces.ZPEObjectNativeMethod;
-import jamiebalfour.zpe.interfaces.ZPEType;
-import jamiebalfour.zpe.types.ZPEList;
-import jamiebalfour.zpe.types.ZPENumber;
-import jamiebalfour.zpe.types.ZPEString;
+import jamiebalfour.zpe.core.interfaces.ZPEObjectNativeMethod;
+import jamiebalfour.zpe.core.interfaces.ZPEType;
+import jamiebalfour.zpe.core.types.ZPEList;
+import jamiebalfour.zpe.core.types.ZPENumber;
+import jamiebalfour.zpe.core.types.ZPEString;
 import oshi.hardware.CentralProcessor;
 
 public class CPU extends ZPEStructure {
