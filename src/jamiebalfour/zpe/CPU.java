@@ -11,6 +11,8 @@ import jamiebalfour.zpe.core.types.ZPENumber;
 import jamiebalfour.zpe.core.types.ZPEString;
 import oshi.hardware.CentralProcessor;
 
+import java.util.HashMap;
+
 public class CPU extends ZPEStructure {
 
   CentralProcessor cpu;
@@ -43,7 +45,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
 
       return new ZPEString(cpu.getProcessorIdentifier().getName());
     }
@@ -78,7 +80,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
 
       return new ZPEString(cpu.getProcessorIdentifier().getVendor());
     }
@@ -111,7 +113,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cpu.getProcessorIdentifier().getFamily());
     }
 
@@ -143,7 +145,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cpu.getProcessorIdentifier().getModel());
     }
 
@@ -175,7 +177,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cpu.getProcessorIdentifier().getStepping());
     }
 
@@ -207,7 +209,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPENumber(cpu.getPhysicalProcessorCount());
     }
 
@@ -239,7 +241,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPENumber(cpu.getLogicalProcessorCount());
     }
 
@@ -271,7 +273,7 @@ public class CPU extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       long[] freqs = cpu.getCurrentFreq(); // may include zeros depending on OS
       ZPEList output = new ZPEList();
       for (long freq : freqs) {

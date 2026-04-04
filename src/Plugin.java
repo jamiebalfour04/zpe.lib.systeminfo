@@ -1,7 +1,12 @@
 import jamiebalfour.zpe.ZPESystemInfoObject;
+import jamiebalfour.zpe.core.ZPEFunction;
+import jamiebalfour.zpe.core.ZPEModule;
+import jamiebalfour.zpe.core.ZPERuntimeEnvironment;
 import jamiebalfour.zpe.core.ZPEStructure;
-import jamiebalfour.zpe.interfaces.ZPECustomFunction;
-import jamiebalfour.zpe.interfaces.ZPELibrary;
+import jamiebalfour.zpe.core.interfaces.ZPECustomFunction;
+import jamiebalfour.zpe.core.interfaces.ZPELibrary;
+import jamiebalfour.zpe.core.interfaces.ZPEType;
+import jamiebalfour.zpe.core.types.ZPEString;
 import oshi.SystemInfo;
 
 import java.util.HashMap;
@@ -20,9 +25,14 @@ public class Plugin implements ZPELibrary {
 
   @Override
   public Map<String, Class<? extends ZPEStructure>> getObjects() {
-    HashMap<String, Class<? extends ZPEStructure>> z = new HashMap<>();
+    Map<String, Class<? extends ZPEStructure>> z = new HashMap<>();
     z.put("SystemInfo", ZPESystemInfoObject.class);
     return z;
+  }
+
+  @Override
+  public Map<String, ZPEModule> getModules() {
+    return new HashMap<>();
   }
 
   @Override

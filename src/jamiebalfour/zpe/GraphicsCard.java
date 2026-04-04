@@ -9,6 +9,8 @@ import jamiebalfour.zpe.core.interfaces.ZPEType;
 import jamiebalfour.zpe.core.types.ZPENumber;
 import jamiebalfour.zpe.core.types.ZPEString;
 
+import java.util.HashMap;
+
 public class GraphicsCard extends ZPEStructure {
 
   ZPESystemInfoObject zpe;
@@ -37,7 +39,7 @@ public class GraphicsCard extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(card.getName());
     }
 
@@ -69,7 +71,7 @@ public class GraphicsCard extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(card.getVendor());
     }
 
@@ -101,7 +103,7 @@ public class GraphicsCard extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPENumber(card.getVRam());
     }
 
@@ -133,7 +135,7 @@ public class GraphicsCard extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(card.getDeviceId());
     }
 

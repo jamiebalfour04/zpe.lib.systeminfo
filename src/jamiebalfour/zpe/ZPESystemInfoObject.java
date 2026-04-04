@@ -16,6 +16,7 @@ import oshi.hardware.ComputerSystem;
 import oshi.hardware.GraphicsCard;
 import oshi.hardware.HardwareAbstractionLayer;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -67,7 +68,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new CPU((ZPESystemInfoObject) parent, cpu);
     }
 
@@ -100,7 +101,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getManufacturer());
     }
 
@@ -132,7 +133,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getModel());
     }
 
@@ -164,7 +165,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getBaseboard().getManufacturer());
     }
 
@@ -196,7 +197,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getBaseboard().getModel());
     }
 
@@ -228,7 +229,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getFirmware().getManufacturer());
     }
 
@@ -260,7 +261,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getFirmware().getVersion());
     }
 
@@ -292,7 +293,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       return new ZPEString(cs.getFirmware().getReleaseDate());
     }
 
@@ -324,7 +325,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       // Matches your demo output style
       return new ZPEString(hal.getSensors().toString());
     }
@@ -357,7 +358,7 @@ public class ZPESystemInfoObject extends ZPEStructure {
     }
 
     @Override
-    public ZPEType MainMethod(JBBinarySearchTree<String, ZPEType> parameters, ZPEObject parent) {
+    public ZPEType run(HashMap<String, ZPEType> parameters, ZPEObject parent) {
       List<GraphicsCard> cards = hal.getGraphicsCards();
       if (cards.isEmpty()) {
         return new ZPEList();
