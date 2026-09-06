@@ -6,7 +6,7 @@ import org.graalvm.nativeimage.c.function.CEntryPoint;
 import org.graalvm.nativeimage.c.type.CCharPointer;
 import org.graalvm.nativeimage.c.type.CCharPointerPointer;
 import org.graalvm.word.WordFactory;
-import oshi.SystemInfo;
+import oshi.ffm.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.ComputerSystem;
 import oshi.hardware.GraphicsCard;
@@ -129,8 +129,11 @@ public final class SystemInfoNativePlugin {
 
   private static void fail(CCharPointerPointer error, Throwable throwable) {
     if (error.isNonNull()) {
-      String message = throwable.getMessage();
-      error.write(cString(message == null ? throwable.getClass().getSimpleName() : message));
+      Throwable cause = throwable;
+      while (cause.getCause() != null && cause.getCause() != cause) cause = cause.getCause();
+      String message = cause.getMessage();
+      error.write(cString(cause.getClass().getSimpleName()
+          + (message == null || message.isEmpty() ? "" : ": " + message)));
     }
   }
 

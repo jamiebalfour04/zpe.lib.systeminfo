@@ -5,14 +5,16 @@ GRAAL_HOME="${GRAAL_HOME:-${GRAALVM_HOME:-$HOME/.sdkman/candidates/java/current}
 DEPENDENCY_DIR="${ZPE_DEPENDENCY_DIR:-$HOME/Sync/Programs/JARs}"
 BUILD_DIR="${BUILD_DIR:-build/native}"
 PLATFORM="$(uname -s)"
-DEPENDENCIES=(oshi-core-6.6.0.jar jna-5.13.0.jar jna-platform-5.13.0.jar slf4j-api-2.0.17.jar slf4j-simple-2.0.17.jar)
+DEPENDENCIES=(oshi-common-7.4.3.jar oshi-core-ffm-7.4.3.jar slf4j-api-2.0.18.jar slf4j-simple-2.0.18.jar)
 
 if [[ "$PLATFORM" == MINGW* || "$PLATFORM" == MSYS* || "$PLATFORM" == CYGWIN* ]]; then
   GRAAL_HOME="$(cygpath -u "$GRAAL_HOME")"
+  JAVA="${JAVA:-$GRAAL_HOME/bin/java.exe}"
   JAVAC="${JAVAC:-$GRAAL_HOME/bin/javac.exe}"
   NATIVE_IMAGE="${NATIVE_IMAGE:-$GRAAL_HOME/bin/native-image.cmd}"
   CP_SEPARATOR=';'
 else
+  JAVA="${JAVA:-$GRAAL_HOME/bin/java}"
   JAVAC="${JAVAC:-$GRAAL_HOME/bin/javac}"
   NATIVE_IMAGE="${NATIVE_IMAGE:-$GRAAL_HOME/bin/native-image}"
   CP_SEPARATOR=':'
@@ -20,6 +22,7 @@ fi
 
 if [ ! -f "$NATIVE_IMAGE" ] && command -v native-image >/dev/null 2>&1; then
   NATIVE_IMAGE="$(command -v native-image)"
+  JAVA="$(command -v java)"
   JAVAC="$(command -v javac)"
 fi
 if [ ! -f "$NATIVE_IMAGE" ]; then
@@ -37,14 +40,18 @@ for dependency in "${DEPENDENCIES[@]}"; do
   CP="$CP$CP_SEPARATOR$DEPENDENCY_DIR/$dependency"
 done
 
-"$JAVAC" -source 11 -target 11 -cp "$CP" -d "$BUILD_DIR/classes" native-src/SystemInfoNativePlugin.java
-"$NATIVE_IMAGE" --shared --no-fallback --enable-native-access=ALL-UNNAMED \
+"$JAVAC" -source 25 -target 25 -cp "$CP" -d "$BUILD_DIR/classes" \
+  native-src/SystemInfoNativePlugin.java native-src/SystemInfoMetadataCollector.java
+"$JAVA" --enable-native-access=ALL-UNNAMED \
+  -agentlib:native-image-agent=config-output-dir="$BUILD_DIR/metadata" \
+  -cp "$CP" SystemInfoMetadataCollector
+"$NATIVE_IMAGE" --shared --no-fallback --enable-native-access=ALL-UNNAMED -H:+AddAllCharsets \
   -cp "$CP" \
+  -H:ConfigurationFileDirectories="$BUILD_DIR/metadata" \
   -H:+UnlockExperimentalVMOptions \
   -H:Path="$BUILD_DIR" \
   -H:Name=zpe.lib.systeminfo \
   -H:IncludeResources='META-INF/services/.*' \
-  -H:IncludeResources='com/sun/jna/.*' \
   -H:-UnlockExperimentalVMOptions \
   SystemInfoNativePlugin
 

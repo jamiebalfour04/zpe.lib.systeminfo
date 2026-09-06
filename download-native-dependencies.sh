@@ -13,8 +13,7 @@ download() {
   fi
 }
 
-download com.github.oshi oshi-core 6.6.0
-download net.java.dev.jna jna 5.13.0
-download net.java.dev.jna jna-platform 5.13.0
-download org.slf4j slf4j-api 2.0.17
-download org.slf4j slf4j-simple 2.0.17
+download com.github.oshi oshi-common 7.4.3
+download com.github.oshi oshi-core-ffm 7.4.3
+download org.slf4j slf4j-api 2.0.18
+download org.slf4j slf4j-simple 2.0.18
