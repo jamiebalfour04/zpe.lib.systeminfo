@@ -11,14 +11,22 @@
 <h2>Installation</h2>
 
 <p>
-  Place <strong>zpe.lib.systeminfo.jar</strong> in your ZPE native-plugins folder and restart ZPE.
+  Install <strong>zpe.lib.systeminfo.jar</strong> in ZPE's plugins folder, or the matching
+  native library in ZPEX's native-plugins folder, and restart ZPE or ZPEX.
 </p>
 
 <p>
   You can also download with the ZULE Package Manager by using:
 </p>
 <p>
-  <code>zpe --zule install zpe.lib.systeminfo.jar</code>
+  <code>zpe --zule install plugin systeminfo</code>
+</p>
+
+<p>
+  Every push builds the JVM plugin plus macOS ARM64, Windows x64 and Linux x64
+  ZPEX plugins, packages them as <strong>zpe.lib.systeminfo.zip</strong>, and deploys
+  the package when the <code>SFTP_DESTINATION_SYSTEMINFO</code> repository secret
+  is configured.
 </p>
 
 <h2>Documentation</h2>
